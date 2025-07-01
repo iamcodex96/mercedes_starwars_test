@@ -1,0 +1,66 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  lint:
+    name: 🔍 Lint Code
+    uses: ./.github/workflows/lint.yml
+
+  test:
+    name: 🧪 Run Tests
+    uses: ./.github/workflows/test.yml
+
+  build:
+    name: 🏗️ Build Application
+    uses: ./.github/workflows/build.yml
+
+  ci-summary:
+    name: 📋 CI Summary
+    runs-on: ubuntu-latest
+    needs: [lint, test, build]
+    if: always()
+
+    steps:
+      - name: Check all jobs status
+        run: |
+          echo "## 📊 CI Pipeline Results" >> $GITHUB_STEP_SUMMARY
+          echo "| Job | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|-----|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| 🔍 Lint | ${{ needs.lint.result == 'success' && '✅ Passed' || '❌ Failed' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| 🧪 Test | ${{ needs.test.result == 'success' && '✅ Passed' || '❌ Failed' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| 🏗️ Build | ${{ needs.build.result == 'success' && '✅ Passed' || '❌ Failed' }} |" >> $GITHUB_STEP_SUMMARY
+          
+          if [[ "${{ needs.lint.result }}" == "success" && "${{ needs.test.result }}" == "success" && "${{ needs.build.result }}" == "success" ]]; then
+            echo "🎉 All checks passed! Ready to merge." >> $GITHUB_STEP_SUMMARY
+            exit 0
+          else
+            echo "❌ Some checks failed. Please review and fix the issues." >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
+
+  deploy-preview:
+    name: 🚀 Deploy Preview
+    runs-on: ubuntu-latest
+    needs: [lint, test, build]
+    if: github.event_name == 'pull_request' && needs.lint.result == 'success' && needs.test.result == 'success' && needs.build.result == 'success'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: dist-${{ github.sha }}
+          path: dist/
+
+      - name: Deploy to preview
+        run: |
+          echo "🚀 Deploying preview for PR #${{ github.event.number }}"
+          echo "Preview would be available at: https://preview-${{ github.event.number }}.your-domain.com"
+          # Aquí irían los pasos reales de deployment

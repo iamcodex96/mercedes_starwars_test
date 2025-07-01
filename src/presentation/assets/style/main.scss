@@ -1,0 +1,17 @@
+@use 'reset';
+@import 'https://fonts.googleapis.com/css2?family=Pathway+Gothic+One&display=swap';
+
+.star-wars-font {
+  font-family: 'Pathway Gothic One', sans-serif !important;
+  letter-spacing: 2px !important;
+  font-size: 2rem !important;
+}
+
+.v-text-field input {
+  color: white !important;
+}
+
+#app {
+  margin: 0 auto;
+  font-weight: normal;
+}
