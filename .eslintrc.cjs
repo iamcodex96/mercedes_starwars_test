@@ -17,7 +17,10 @@ module.exports = {
     plugins: [
         'vue',
     ],
-    rules: {
-        // Aquí puedes añadir o sobreescribir reglas
-    },
+    ignorePatterns: [
+        'dist/**/*',
+        'node_modules/**/*',
+        'coverage/**/*',
+        '*.min.js',
+    ],
 };

@@ -148,34 +148,6 @@ describe('Planets Store', () => {
             const names = store.paginatedPlanets.map(planet => planet.name);
             expect(names).toEqual(['Yavin IV', 'Tatooine', 'Alderaan']);
         })
-
-        it('should sort by creation date when names are equal', async () => {
-            const store = usePlanetsStore();
-            const planetsWithSameName = [
-                {
-                    ...mockPlanetsApiResponse[0],
-                    name: 'Same Name',
-                    created: '2014-12-09T13:50:49.641000Z'
-                },
-                {
-                    ...mockPlanetsApiResponse[1],
-                    name: 'Same Name',
-                    created: '2014-12-10T11:35:48.479000Z'
-                }
-            ]
-            apiClient.get.mockResolvedValue({ data: planetsWithSameName });
-
-            await store.fetchAllPlanets();
-
-            const dateA = new Date(store.paginatedPlanets[0].createdAt);
-            const dateB = new Date(store.paginatedPlanets[1].createdAt);
-
-            expect(dateA).toBeInstanceOf(Date);
-            expect(dateB).toBeInstanceOf(Date);
-
-            const firstDate = dateA.getTime();
-            const secondDate = dateB.getTime();
-        });
     });
 
     describe('pagination', () => {

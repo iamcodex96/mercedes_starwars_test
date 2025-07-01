@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { Person } from '@/domain/entities/Person.js'
-import { mockPeopleApiResponse, mockPersonMapped } from '@/test/mocks/peopleData.mock.js'
+import { mockPeopleApiResponse } from '@/test/mocks/peopleData.mock.js'
 
 describe('Person Entity', () => {
     describe('constructor', () => {
