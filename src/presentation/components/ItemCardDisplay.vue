@@ -1,7 +1,7 @@
 <template>
   <v-card
       :class="[
-        'ItemCardDisplay my-3 mx-1 d-flex flex-column',
+        'item-card-display my-3 mx-1 d-flex flex-column',
         isItemPerson ? 'person-card' : 'planet-card'
       ]"
       :aria-label="item.name"
@@ -37,7 +37,7 @@
     <!-- Content area that fills remaining space -->
     <v-card-text class="pa-4 flex-grow-1 d-flex flex-column">
       <!-- Person Information -->
-      <div v-if="isItemPerson" class="ItemCardDisplay__PersonInfo flex-grow-1">
+      <div v-if="isItemPerson" class="item-card-display__person-info flex-grow-1">
         <v-row class="fill-height">
           <v-col cols="12" lg="6">
             <div class="info-section h-100">
@@ -103,7 +103,7 @@
       </div>
 
       <!-- Planet Information -->
-      <div v-else class="ItemCardDisplay__PlanetInfo flex-grow-1">
+      <div v-else class="item-card-display__planet-info flex-grow-1">
         <v-row class="fill-height">
           <v-col cols="12" lg="6">
             <div class="info-section h-100">
@@ -271,16 +271,16 @@ const formatText = (text) => {
 </script>
 
 <style scoped>
-.ItemCardDisplay {
+.item-card-display {
   transition: all 0.3s ease;
-  border: 1px solid rgba(0,0,0,0.1);
+  border: 1px solid rgb(0 0 0 / 10%);
   min-height: 350px;
   height: 100%;
 }
 
-.ItemCardDisplay:hover {
+.item-card-display:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
+  box-shadow: 0 8px 25px rgb(0 0 0 / 15%) !important;
 }
 
 .person-card {
@@ -292,7 +292,7 @@ const formatText = (text) => {
 }
 
 .info-section {
-  background-color: rgba(0,0,0,0.02);
+  background-color: rgb(0 0 0 / 2%);
   border-radius: 8px;
   padding: 12px;
   margin-bottom: 12px;
@@ -313,42 +313,19 @@ const formatText = (text) => {
 
 .star-wars-font {
   font-family: 'Arial Black', Arial, sans-serif;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  text-shadow: 2px 2px 4px rgb(0 0 0 / 30%);
+  letter-spacing: 1px;
 }
 
-.fill-height {
-  height: 100%;
-}
-
-.h-100 {
-  height: 100% !important;
-}
-
-@media (max-width: 1280px) and (min-width: 960px) {
-  .ItemCardDisplay {
-    min-height: 380px;
-  }
-  
-  .info-section {
-    padding: 8px;
-  }
-  
-  .v-list-item-title {
-    font-size: 0.8rem;
-  }
-  
-  .text-subtitle-1 {
-    font-size: 0.9rem !important;
+@media (width >= 600px) and (width <= 1023px) {
+  .item-card-display {
+    min-height: 300px;
   }
 }
 
-@media (max-width: 960px) {
-  .ItemCardDisplay {
-    min-height: auto;
-  }
-  
-  .info-section {
-    margin-bottom: 8px;
+@media (width >= 1024px) {
+  .item-card-display {
+    min-height: 350px;
   }
 }
 </style>

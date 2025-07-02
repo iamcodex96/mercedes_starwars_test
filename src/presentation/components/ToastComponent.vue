@@ -144,11 +144,13 @@ defineExpose({
   line-height: 1.3;
 }
 
+/* stylelint-disable-next-line selector-class-pattern */
 :deep(.v-snackbar__content) {
-  padding: 12px 16px;
+  padding: 16px 24px;
 }
 
+/* stylelint-disable-next-line selector-class-pattern */
 :deep(.v-snackbar__actions) {
-  margin-left: 8px;
+  padding: 8px 16px 16px;
 }
 </style>

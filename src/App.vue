@@ -102,11 +102,12 @@ onMounted(async () => {
 <style scoped>
 .star-wars-font {
   font-family: 'Arial Black', Arial, sans-serif;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  text-shadow: 2px 2px 4px rgb(0 0 0 / 50%);
   letter-spacing: 2px;
 }
 
 .app-toolbar-title {
   font-size: 1.5rem !important;
 }
+
 </style>
