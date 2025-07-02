@@ -1,7 +1,10 @@
 <template>
   <div class="item-list-container">
     <!-- Loading state -->
-    <div v-if="isLoading" class="d-flex justify-center align-center py-8">
+    <div
+      v-if="isLoading"
+      class="d-flex justify-center align-center py-8"
+    >
       <v-progress-circular
         color="primary"
         size="50"
@@ -11,8 +14,16 @@
     </div>
 
     <!-- Empty state -->
-    <div v-else-if="!items || items.length === 0" class="text-center py-8">
-      <v-icon icon="mdi-database-search" size="64" color="grey" class="mb-4" />
+    <div
+      v-else-if="!items || items.length === 0"
+      class="text-center py-8"
+    >
+      <v-icon
+        icon="mdi-database-search"
+        size="64"
+        color="grey"
+        class="mb-4"
+      />
       <h3 class="text-h5 mb-2">No results found</h3>
       <p class="text-body-1 text-grey">
         Try adjusting your search filters or changing the data type.
@@ -20,7 +31,10 @@
     </div>
 
     <!-- Items grid -->
-    <v-row v-else class="ma-0">
+    <v-row
+      v-else
+      class="ma-0"
+    >
       <v-col
         v-for="(item, index) in items"
         :key="index"

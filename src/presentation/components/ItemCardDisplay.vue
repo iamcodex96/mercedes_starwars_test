@@ -1,14 +1,14 @@
 <template>
   <v-card
-      :class="[
-        'item-card-display my-3 mx-1 d-flex flex-column',
-        isItemPerson ? 'person-card' : 'planet-card'
-      ]"
-      :aria-label="item.name"
-      role="listitem"
-      tabindex="0"
-      elevation="3"
-      rounded="lg"
+    :class="[
+      'item-card-display my-3 mx-1 d-flex flex-column',
+      isItemPerson ? 'person-card' : 'planet-card'
+    ]"
+    :aria-label="item.name"
+    role="listitem"
+    tabindex="0"
+    elevation="3"
+    rounded="lg"
   >
     <!-- Header with icon and name -->
     <v-card-title class="d-flex align-center pa-4 flex-shrink-0">
@@ -19,7 +19,10 @@
         class="mr-3"
       />
       <div>
-        <h3 class="text-h5 star-wars-font mb-1" data-testid="item-name">
+        <h3
+          class="text-h5 star-wars-font mb-1"
+          data-testid="item-name"
+        >
           {{ item.name }}
         </h3>
         <v-chip 
@@ -37,34 +40,59 @@
     <!-- Content area that fills remaining space -->
     <v-card-text class="pa-4 flex-grow-1 d-flex flex-column">
       <!-- Person Information -->
-      <div v-if="isItemPerson" class="item-card-display__person-info flex-grow-1">
+      <div
+        v-if="isItemPerson"
+        class="item-card-display__person-info flex-grow-1"
+      >
         <v-row class="fill-height">
-          <v-col cols="12" lg="6">
+          <v-col
+            cols="12"
+            lg="6"
+          >
             <div class="info-section h-100">
               <h4 class="text-subtitle-1 font-weight-bold mb-2 text-blue">
-                <v-icon icon="mdi-human" size="small" class="mr-1" />
+                <v-icon
+                  icon="mdi-human"
+                  size="small"
+                  class="mr-1"
+                />
                 Physical Characteristics
               </h4>
-              <v-list dense class="pa-0">
+              <v-list
+                dense
+                class="pa-0"
+              >
                 <v-list-item class="px-0 py-1">
-                  <template v-slot:prepend>
-                    <v-icon icon="mdi-ruler" size="small" color="grey" />
+                  <template #prepend>
+                    <v-icon
+                      icon="mdi-ruler"
+                      size="small"
+                      color="grey"
+                    />
                   </template>
                   <v-list-item-title>
                     <strong>Height:</strong> {{ formatHeight(item.height) }}
                   </v-list-item-title>
                 </v-list-item>
                 <v-list-item class="px-0 py-1">
-                  <template v-slot:prepend>
-                    <v-icon icon="mdi-weight" size="small" color="grey" />
+                  <template #prepend>
+                    <v-icon
+                      icon="mdi-weight"
+                      size="small"
+                      color="grey"
+                    />
                   </template>
                   <v-list-item-title>
                     <strong>Mass:</strong> {{ formatMass(item.mass) }}
                   </v-list-item-title>
                 </v-list-item>
                 <v-list-item class="px-0 py-1">
-                  <template v-slot:prepend>
-                    <v-icon icon="mdi-palette" size="small" color="grey" />
+                  <template #prepend>
+                    <v-icon
+                      icon="mdi-palette"
+                      size="small"
+                      color="grey"
+                    />
                   </template>
                   <v-list-item-title>
                     <strong>Skin Color:</strong> {{ formatText(item.skinColor) }}
@@ -73,24 +101,42 @@
               </v-list>
             </div>
           </v-col>
-          <v-col cols="12" lg="6">
+          <v-col
+            cols="12"
+            lg="6"
+          >
             <div class="info-section h-100">
               <h4 class="text-subtitle-1 font-weight-bold mb-2 text-blue">
-                <v-icon icon="mdi-information" size="small" class="mr-1" />
+                <v-icon
+                  icon="mdi-information"
+                  size="small"
+                  class="mr-1"
+                />
                 Personal Information
               </h4>
-              <v-list dense class="pa-0">
+              <v-list
+                dense
+                class="pa-0"
+              >
                 <v-list-item class="px-0 py-1">
-                  <template v-slot:prepend>
-                    <v-icon icon="mdi-gender-male-female" size="small" color="grey" />
+                  <template #prepend>
+                    <v-icon
+                      icon="mdi-gender-male-female"
+                      size="small"
+                      color="grey"
+                    />
                   </template>
                   <v-list-item-title>
                     <strong>Gender:</strong> {{ formatGender(item.gender) }}
                   </v-list-item-title>
                 </v-list-item>
                 <v-list-item class="px-0 py-1">
-                  <template v-slot:prepend>
-                    <v-icon icon="mdi-calendar" size="small" color="grey" />
+                  <template #prepend>
+                    <v-icon
+                      icon="mdi-calendar"
+                      size="small"
+                      color="grey"
+                    />
                   </template>
                   <v-list-item-title>
                     <strong>Birth Year:</strong> {{ formatBirthYear(item.birthYear) }}
@@ -103,34 +149,59 @@
       </div>
 
       <!-- Planet Information -->
-      <div v-else class="item-card-display__planet-info flex-grow-1">
+      <div
+        v-else
+        class="item-card-display__planet-info flex-grow-1"
+      >
         <v-row class="fill-height">
-          <v-col cols="12" lg="6">
+          <v-col
+            cols="12"
+            lg="6"
+          >
             <div class="info-section h-100">
               <h4 class="text-subtitle-1 font-weight-bold mb-2 text-green">
-                <v-icon icon="mdi-earth" size="small" class="mr-1" />
+                <v-icon
+                  icon="mdi-earth"
+                  size="small"
+                  class="mr-1"
+                />
                 Physical Characteristics
               </h4>
-              <v-list dense class="pa-0">
+              <v-list
+                dense
+                class="pa-0"
+              >
                 <v-list-item class="px-0 py-1">
-                  <template v-slot:prepend>
-                    <v-icon icon="mdi-diameter-outline" size="small" color="grey" />
+                  <template #prepend>
+                    <v-icon
+                      icon="mdi-diameter-outline"
+                      size="small"
+                      color="grey"
+                    />
                   </template>
                   <v-list-item-title>
                     <strong>Diameter:</strong> {{ formatDiameter(item.diameter) }}
                   </v-list-item-title>
                 </v-list-item>
                 <v-list-item class="px-0 py-1">
-                  <template v-slot:prepend>
-                    <v-icon icon="mdi-weather-partly-cloudy" size="small" color="grey" />
+                  <template #prepend>
+                    <v-icon
+                      icon="mdi-weather-partly-cloudy"
+                      size="small"
+                      color="grey"
+                    />
                   </template>
                   <v-list-item-title>
                     <strong>Climate:</strong> {{ formatText(item.climate) }}
                   </v-list-item-title>
                 </v-list-item>
                 <v-list-item class="px-0 py-1">
-                  <template v-slot:prepend>
-                    <v-icon icon="mdi-gravity" size="small" color="grey" />
+                  <template #prepend>
+                    <v-icon
+                      icon="mdi-gravity"
+                      size="small"
+                      color="grey"
+                    />
                   </template>
                   <v-list-item-title>
                     <strong>Gravity:</strong> {{ formatGravity(item.gravity) }}
@@ -139,32 +210,54 @@
               </v-list>
             </div>
           </v-col>
-          <v-col cols="12" lg="6">
+          <v-col
+            cols="12"
+            lg="6"
+          >
             <div class="info-section h-100">
               <h4 class="text-subtitle-1 font-weight-bold mb-2 text-green">
-                <v-icon icon="mdi-chart-line" size="small" class="mr-1" />
+                <v-icon
+                  icon="mdi-chart-line"
+                  size="small"
+                  class="mr-1"
+                />
                 Population Data
               </h4>
-              <v-list dense class="pa-0">
+              <v-list
+                dense
+                class="pa-0"
+              >
                 <v-list-item class="px-0 py-1">
-                  <template v-slot:prepend>
-                    <v-icon icon="mdi-water" size="small" color="grey" />
+                  <template #prepend>
+                    <v-icon
+                      icon="mdi-water"
+                      size="small"
+                      color="grey"
+                    />
                   </template>
                   <v-list-item-title>
                     <strong>Surface Water:</strong> {{ formatWater(item.surfaceWater) }}
                   </v-list-item-title>
                 </v-list-item>
                 <v-list-item class="px-0 py-1">
-                  <template v-slot:prepend>
-                    <v-icon icon="mdi-orbit" size="small" color="grey" />
+                  <template #prepend>
+                    <v-icon
+                      icon="mdi-orbit"
+                      size="small"
+                      color="grey"
+                    />
                   </template>
                   <v-list-item-title>
                     <strong>Orbital Period:</strong> {{ formatOrbitalPeriod(item.orbitalPeriod) }}
                   </v-list-item-title>
                 </v-list-item>
                 <v-list-item class="px-0 py-1">
-                  <template v-slot:prepend>
-                    <v-icon icon="mdi-account-group" size="small" color="grey" />
+                  <template #prepend>
+                    <v-icon
+                      icon="mdi-account-group"
+                      size="small"
+                      color="grey"
+                    />
                   </template>
                   <v-list-item-title>
                     <strong>Population:</strong> {{ formatPopulation(item.population) }}

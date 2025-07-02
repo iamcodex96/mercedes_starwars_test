@@ -1,22 +1,22 @@
 <template>
   <div class="w-100 d-flex justify-center my-4">
     <v-btn-toggle
-        v-model="selectedData"
-        mandatory
-        color="primary"
-        rounded="lg"
-        @update:model-value="handleChangeType"
+      v-model="selectedData"
+      mandatory
+      color="primary"
+      rounded="lg"
+      @update:model-value="handleChangeType"
     >
       <v-btn
-          :value="DATA_TYPES.people"
-          data-testid="people-button"
+        :value="DATA_TYPES.people"
+        data-testid="people-button"
       >
         <v-icon start> mdi-account </v-icon>
         People
       </v-btn>
       <v-btn
-          :value="DATA_TYPES.planet"
-          data-testid="planets-button"
+        :value="DATA_TYPES.planet"
+        data-testid="planets-button"
       >
         <v-icon start>mdi-earth</v-icon>
         Planets
@@ -25,23 +25,23 @@
   </div>
   <div class="d-flex">
     <v-text-field
-        v-model="searchTerm"
-        :label="searchLabel"
-        :color="THEME_COLORS.primary"
-        variant="outlined"
-        rounded="xl"
-        data-testid="search-input"
-        class="mr-4"
-        @update:model-value="onSearch"
+      v-model="searchTerm"
+      :label="searchLabel"
+      :color="THEME_COLORS.primary"
+      variant="outlined"
+      rounded="xl"
+      data-testid="search-input"
+      class="mr-4"
+      @update:model-value="onSearch"
     />
     <v-btn
-        :color="isSortAsc ? THEME_COLORS.primary : THEME_COLORS.ink"
-        rounded="xl"
-        size="large"
-        glow
-        data-testid="sort-button"
-        @click="changeSortDirection"
-        class="mt-2"
+      :color="isSortAsc ? THEME_COLORS.primary : THEME_COLORS.ink"
+      rounded="xl"
+      size="large"
+      glow
+      data-testid="sort-button"
+      class="mt-2"
+      @click="changeSortDirection"
     >
       <v-icon v-if="isSortAsc">mdi-sort-ascending</v-icon>
       <v-icon v-else>mdi-sort-descending</v-icon>

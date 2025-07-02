@@ -29,3 +29,6 @@ yarn.lock
 *.sw?
 
 *.tsbuildinfo
+
+/test-results/*
+/playwright-report/*

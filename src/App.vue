@@ -1,25 +1,31 @@
 <template>
   <v-app>
     <v-app-bar
-        color="black"
-        density="comfortable"
-        elevation="4"
+      color="black"
+      density="comfortable"
+      elevation="4"
     >
-      <template v-slot:prepend>
+      <template #prepend>
         <v-app-bar-title class="app-toolbar-title text-yellow-accent-4 star-wars-font px-6">
-          <v-icon icon="mdi-star" class="mr-2" />
+          <v-icon
+            icon="mdi-star"
+            class="mr-2"
+          />
           STAR WARS
         </v-app-bar-title>
       </template>
     </v-app-bar>
 
     <v-main>
-      <v-container fluid class="pa-4">
+      <v-container
+        fluid
+        class="pa-4"
+      >
         <!-- Filters -->
         <item-filter-component
-            @sort-change="handleSortChange"
-            @search-change="handleSearch"
-            @type-change="handleTypeChange"
+          @sort-change="handleSortChange"
+          @search-change="handleSearch"
+          @type-change="handleTypeChange"
         />
 
         <!-- Items list -->
@@ -30,14 +36,17 @@
         />
 
         <!-- Pagination -->
-        <div class="d-flex justify-center mt-6" v-if="pagesNumber > 1">
+        <div
+          v-if="pagesNumber > 1"
+          class="d-flex justify-center mt-6"
+        >
           <v-pagination
-              v-model="currentPage"
-              :length="pagesNumber"
-              :active-color="THEME_COLORS.primary"
-              rounded
-              data-testid="pagination"
-              :total-visible="7"
+            v-model="currentPage"
+            :length="pagesNumber"
+            :active-color="THEME_COLORS.primary"
+            rounded
+            data-testid="pagination"
+            :total-visible="7"
           />
         </div>
       </v-container>

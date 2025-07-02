@@ -15,7 +15,10 @@
         class="mr-2"
       />
       <div class="toast-content">
-        <div class="toast-title" v-if="toastTitle">
+        <div
+          v-if="toastTitle"
+          class="toast-title"
+        >
           {{ toastTitle }}
         </div>
         <div class="toast-message">
@@ -24,7 +27,7 @@
       </div>
     </div>
     
-    <template v-slot:actions>
+    <template #actions>
       <v-btn
         color="white"
         variant="text"

@@ -20,7 +20,7 @@ export const selectors = {
   
   // List component
   itemsList: '.v-container',
-  itemCard: '.ItemCardDisplay',
+  itemCard: '.item-card-display',
   itemName: '[data-testid="item-name"]',
   
   // Pagination
