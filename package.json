@@ -15,7 +15,8 @@
     "test:ui": "vitest --ui",
     "test:run": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "test:e2e": "playwright test"
+    "test:e2e": "npm run build && playwright test",
+    "test:e2e:dev": "playwright test"
   },
   "dependencies": {
     "@mdi/font": "^7.4.47",
