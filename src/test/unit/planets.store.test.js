@@ -153,7 +153,6 @@ describe('Planets Store', () => {
     describe('pagination', () => {
         it('should calculate total pages correctly', async () => {
             const store = usePlanetsStore();
-            // Mock 25 planets to test pagination
             const manyPlanets = Array.from({ length: 25 }, (_, index) => ({
                 ...mockPlanetsApiResponse[0],
                 name: `Planet ${index + 1}`,
@@ -164,7 +163,7 @@ describe('Planets Store', () => {
             await store.fetchAllPlanets();
 
             expect(store.totalItems).toBe(25);
-            expect(store.totalPages).toBe(3); // 25 items / 10 per page = 3 pages
+            expect(store.totalPages).toBe(3);
         })
 
         it('should return correct items for different pages', async () => {
@@ -178,12 +177,10 @@ describe('Planets Store', () => {
 
             await store.fetchAllPlanets();
 
-            // Page 1
             store.currentPage = 1;
             expect(store.paginatedPlanets).toHaveLength(10);
             expect(store.paginatedPlanets[0].name).toBe('Planet 01');
 
-            // Page 2
             store.currentPage = 2;
             expect(store.paginatedPlanets).toHaveLength(5);
             expect(store.paginatedPlanets[0].name).toBe('Planet 11');
@@ -216,13 +213,10 @@ describe('Planets Store', () => {
 
             await store.fetchAllPlanets();
 
-            // Initially should have 3 pages
             expect(store.totalPages).toBe(3);
 
-            // Filter to only special planets
             store.setSearchTerm('Special');
 
-            // Now should have only 1 page
             expect(store.totalItems).toBe(5);
             expect(store.totalPages).toBe(1);
         });

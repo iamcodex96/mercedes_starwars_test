@@ -76,19 +76,19 @@ export const usePeopleStore = defineStore('people', () => {
     };
 
     return {
-        // Estado
+        // State
         currentPage,
         isLoading,
         error,
         searchTerm,
         sortDirection,
 
-        // Getters computados
+        // Getters
         paginatedPeople,
         totalItems,
         totalPages,
 
-        // Acciones
+        // Actions
         fetchAllPeople,
         setSearchTerm,
         setSortDirection

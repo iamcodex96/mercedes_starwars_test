@@ -18,36 +18,33 @@ export class StarWarsApp {
     
     await this.page.waitForLoadState('networkidle');
     
-    await this.page.waitForTimeout(2000); // AUMENTADO a 2 segundos
+    await this.page.waitForTimeout(2000);
   }
 
   async switchToDataType(type) {
     const selector = type === 'people' ? selectors.peopleButton : selectors.planetsButton;
     await this.page.click(selector);
     await this.page.waitForLoadState('networkidle');
-    await this.page.waitForTimeout(1000); // AUMENTADO
+    await this.page.waitForTimeout(1000);
   }
 
   async searchFor(term) {
-    // Limpiar campo de búsqueda
     await this.page.locator(selectors.searchInput).fill('');
     await this.page.waitForTimeout(300);
     
-    // Escribir nuevo término
     await this.page.locator(selectors.searchInput).fill(term);
-    await this.page.waitForTimeout(1000); // AUMENTADO para dar tiempo al filtrado
+    await this.page.waitForTimeout(1000);
   }
 
   async clearSearch() {
     await this.page.locator(selectors.searchInput).fill('');
-    await this.page.waitForTimeout(1000); // AUMENTADO
+    await this.page.waitForTimeout(1000);
   }
 
   async toggleSort() {
     await this.page.click(selectors.sortButton);
-    await this.page.waitForTimeout(1000); // AUMENTADO
+    await this.page.waitForTimeout(1000);
   }
-
   async goToPage(pageNumber) {
     const pageButton = this.page.locator(`${selectors.paginationButton}:has-text("${pageNumber}")`);
     if (await pageButton.isVisible()) {
@@ -59,7 +56,6 @@ export class StarWarsApp {
   }
 
   async goToNextPage() {
-    // Buscar botón de siguiente página de forma más flexible
     const nextButton = this.page.locator('.v-pagination__next').first();
     if (await nextButton.isVisible() && await nextButton.isEnabled()) {
       await nextButton.click();
@@ -70,7 +66,6 @@ export class StarWarsApp {
   }
 
   async goToPreviousPage() {
-    // Buscar botón de página anterior de forma más flexible
     const prevButton = this.page.locator('.v-pagination__prev').first();
     if (await prevButton.isVisible() && await prevButton.isEnabled()) {
       await prevButton.click();
@@ -81,7 +76,6 @@ export class StarWarsApp {
   }
 
   async getVisibleItems() {
-    // Esperar que haya al menos un item visible
     try {
       await this.page.waitForSelector(selectors.itemCard, { state: 'visible', timeout: 5000 });
       const items = await this.page.locator(selectors.itemName).allTextContents();

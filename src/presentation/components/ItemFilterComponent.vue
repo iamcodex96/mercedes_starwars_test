@@ -1,7 +1,7 @@
 <template>
   <div class="w-100 d-flex justify-center my-4">
     <v-btn-toggle
-        v-model="selectedType"
+        v-model="selectedData"
         mandatory
         color="primary"
         rounded="lg"
@@ -26,11 +26,12 @@
   <div class="d-flex">
     <v-text-field
         v-model="searchTerm"
-        :label="`Search Planets`"
+        :label="searchLabel"
         :color="THEME_COLORS.primary"
         variant="outlined"
         rounded="xl"
         data-testid="search-input"
+        class="mr-4"
         @update:model-value="onSearch"
     />
     <v-btn
@@ -48,15 +49,17 @@
   </div>
 </template>
 <script setup>
-import { ref } from 'vue';
+import {computed, onMounted, ref} from 'vue';
 import { THEME_COLORS } from '@/shared/constants/theme.const.js';
 import { DATA_TYPES } from '@/shared/constants/store.const.js';
+import { useStoreManager } from "@/application/composables/useStoreManager.js";
 
 const emit = defineEmits(['sort-change', 'search-change', 'type-change']);
+const { selectedData } = useStoreManager();
+const searchLabel = computed(() => (`Search ${selectedData.value} by name...`));
 const searchTerm = ref('');
 const sortDirection = ref('asc');
 const isSortAsc = ref(true);
-const selectedType = ref(DATA_TYPES.people);
 
 const onSearch = (searchTerm) => {
   emit('search-change', searchTerm);
@@ -69,7 +72,6 @@ const changeSortDirection = () => {
 }
 
 const handleChangeType = (type) => {
-  selectedType.value = type;
-  emit('type-change', selectedType.value);
+  emit('type-change', type);
 }
 </script>

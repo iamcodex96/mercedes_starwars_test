@@ -28,6 +28,7 @@ const starWarsTheme = {
     }
 };
 
+const pinia = createPinia();
 const vuetify = createVuetify({
     components,
     directives,
@@ -38,8 +39,6 @@ const vuetify = createVuetify({
         }
     }
 });
-
-const pinia = createPinia();
 
 const app = createApp(App);
 

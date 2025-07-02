@@ -37,7 +37,6 @@ export default [
             }
         },
         rules: {
-            // Configuraciones personalizadas aquí
             'no-unused-vars': 'warn',
             'vue/html-indent': ['warn', 2],
             'vue/require-default-prop': 'warn',
