@@ -8,6 +8,11 @@ export default defineConfig({
     vue(),
     vuetify({ autoImport: true }),
   ],
+  base: process.env.NODE_ENV === 'production' ? '/mercedes_starwars_test/' : '/',
+  build: {
+    outDir: 'dist',
+    assetsDir: 'assets'
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
