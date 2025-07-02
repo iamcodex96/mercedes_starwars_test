@@ -1,4 +1,3 @@
-
 name: Lint
 
 on:
@@ -15,17 +14,17 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20.x'
-          cache: 'yarn'
+          node-version: '20'
+          cache: 'npm'
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: npm ci
 
       - name: Run ESLint
-        run: yarn lint:js
+        run: npm run lint:js
 
       - name: Run Stylelint
-        run: yarn lint:style
+        run: npm run lint:style
 
       - name: Check if linting passed
         run: echo "✅ Linting completed successfully"
