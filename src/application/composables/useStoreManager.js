@@ -32,7 +32,6 @@ export function useStoreManager() {
   const searchTerm = computed(() => currentStore.value.searchTerm || '')
   const sortDirection = computed(() => currentStore.value.sortDirection || 'asc')
 
-  // Toast helper function
   const showToast = (type, title, message) => {
     if (window.showToast) {
       window.showToast[type](message, title)

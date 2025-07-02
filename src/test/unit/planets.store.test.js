@@ -194,7 +194,6 @@ describe('Planets Store', () => {
 
             await store.fetchAllPlanets();
 
-            // Search for planets with 'a' in name and sort descending
             store.setSearchTerm('a');
             store.setSortDirection('desc');
 

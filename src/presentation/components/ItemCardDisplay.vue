@@ -375,7 +375,6 @@ const isItemPerson = computed(() => {
   @include star-wars-font;
 }
 
-// Breakpoints usando las variables
 @include media-between($breakpoint-sm, $breakpoint-lg) {
   .item-card-display {
     min-height: 300px;

@@ -1,6 +1,4 @@
-// ========================================
 // THEME COLORS
-// ========================================
 $primary: #FFE81F;
 $secondary: #2E67F8;
 $accent: #FF0000;
@@ -11,9 +9,7 @@ $warning: #FF9F00;
 $background: #121212;
 $ink: #1E1E1E;
 
-// ========================================
 // SPACING
-// ========================================
 $spacing-xs: 4px;
 $spacing-sm: 8px;
 $spacing-md: 12px;
@@ -21,41 +17,34 @@ $spacing-lg: 16px;
 $spacing-xl: 24px;
 $spacing-xxl: 32px;
 
-// ========================================
 // BORDER RADIUS
-// ========================================
 $border-radius-sm: 4px;
 $border-radius-md: 8px;
 $border-radius-lg: 12px;
 $border-radius-xl: 16px;
 
-// ========================================
 // SHADOWS
-// ========================================
 $shadow-light: 0 2px 8px rgb(0 0 0 / 10%);
 $shadow-medium: 0 4px 16px rgb(0 0 0 / 15%);
 $shadow-heavy: 0 8px 25px rgb(0 0 0 / 15%);
 $shadow-subtle: 1px solid rgb(0 0 0 / 10%);
 
-// ========================================
 // TRANSITIONS
-// ========================================
 $transition-fast: 0.2s;
 $transition-normal: 0.3s;
 $transition-slow: 0.5s;
 
-// ========================================
+
 // TYPOGRAPHY
-// ========================================
 $font-family-primary: 'Roboto', sans-serif;
 $font-family-display: 'Arial Black', Arial, sans-serif;
 
-$font-size-xs: 0.75rem;   // 12px
-$font-size-sm: 0.875rem;  // 14px
-$font-size-md: 1rem;      // 16px
-$font-size-lg: 1.125rem;  // 18px
-$font-size-xl: 1.25rem;   // 20px
-$font-size-xxl: 1.5rem;   // 24px
+$font-size-xs: 12px;
+$font-size-sm: 14px;
+$font-size-md: 16px;
+$font-size-lg: 18px;
+$font-size-xl: 20px;
+$font-size-xxl: 24px;
 
 $font-weight-light: 300;
 $font-weight-normal: 400;
@@ -68,29 +57,14 @@ $line-height-tight: 1.2;
 $line-height-normal: 1.4;
 $line-height-relaxed: 1.6;
 
-// ========================================
 // BREAKPOINTS
-// ========================================
 $breakpoint-xs: 0;
 $breakpoint-sm: 600px;
 $breakpoint-md: 960px;
 $breakpoint-lg: 1264px;
 $breakpoint-xl: 1904px;
 
-// ========================================
-// Z-INDEX
-// ========================================
-$z-index-dropdown: 1000;
-$z-index-sticky: 1020;
-$z-index-fixed: 1030;
-$z-index-modal-backdrop: 1040;
-$z-index-modal: 1050;
-$z-index-popover: 1060;
-$z-index-tooltip: 1070;
-
-// ========================================
 // MIXINS
-// ========================================
 @mixin star-wars-font {
   font-family: $font-family-display;
   text-shadow: 2px 2px 4px rgb(0 0 0 / 50%);
