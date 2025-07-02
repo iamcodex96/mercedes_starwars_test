@@ -109,14 +109,19 @@ onMounted(async () => {
 });
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import '@/presentation/assets/style/variable';
+
 .star-wars-font {
-  font-family: 'Arial Black', Arial, sans-serif;
-  text-shadow: 2px 2px 4px rgb(0 0 0 / 50%);
-  letter-spacing: 2px;
+  @include star-wars-font;
 }
 
 .app-toolbar-title {
-  font-size: 1.5rem !important;
+  font-size: $font-size-xxl !important;
+}
+
+.pagination-wrapper {
+  @include flex-center;
+  margin-top: $spacing-xl;
 }
 </style>

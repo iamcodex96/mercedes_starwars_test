@@ -287,6 +287,18 @@
 import { computed } from 'vue'
 import { DATA_TYPES } from '@/shared/constants/store.const.js'
 import { THEME_COLORS } from '@/shared/constants/theme.const.js'
+import {
+  formatDiameter,
+  formatGravity,
+  formatHeight,
+  formatMass,
+  formatText,
+  formatWater,
+  formatOrbitalPeriod,
+  formatPopulation,
+  formatGender,
+  formatBirthYear,
+} from '@/shared/utils/entityDataFormater.util.js';
 
 const props = defineProps({
   item: Object,
@@ -299,140 +311,78 @@ const props = defineProps({
 const isItemPerson = computed(() => {
   return props.selectedType === DATA_TYPES.people || props.item.gender !== undefined;
 });
-
-const formatHeight = (height) => {
-  if (!height || height === 'unknown') {
-    return 'Unknown';
-  }
-  return `${height} cm`;
-}
-
-const formatMass = (mass) => {
-  if (!mass || mass === 'unknown') {
-    return 'Unknown';
-  }
-  return `${mass} kg`;
-}
-
-const formatGender = (gender) => {
-  const genders = {
-    'male': 'Male',
-    'female': 'Female',
-    'hermaphrodite': 'Hermaphrodite',
-    'n/a': 'N/A'
-  };
-  return genders[gender] || 'Unknown';
-}
-
-const formatBirthYear = (birthYear) => {
-  if (!birthYear || birthYear === 'unknown') {
-    return 'Unknown';
-  }
-  return birthYear;
-}
-
-const formatDiameter = (diameter) => {
-  if (!diameter || diameter === 'unknown') {
-    return 'Unknown';
-  }
-  return `${Number(diameter).toLocaleString()} km`;
-}
-
-const formatGravity = (gravity) => {
-  if (!gravity || gravity === 'unknown') {
-    return 'Unknown';
-  }
-  return gravity.includes('gravity') ? gravity : `${gravity} (standard gravity)`;
-}
-
-const formatWater = (water) => {
-  if (!water || water === 'unknown') {
-    return 'Unknown';
-  }
-
-  return `${water}%`;
-}
-
-const formatOrbitalPeriod = (period) => {
-  if (!period || period === 'unknown') {
-    return 'Unknown';
-  }
-  return `${period} days`
-}
-
-const formatPopulation = (population) => {
-  if (!population || population === 'unknown') {
-    return 'Unknown';
-  }
-  const num = Number(population);
-  if (isNaN(num)) {
-    return population;
-  }
-  return num.toLocaleString()
-}
-
-const formatText = (text) => {
-  if (!text || text === 'unknown') {
-    return 'Unknown';
-  }
-  return text.charAt(0).toUpperCase() + text.slice(1)
-}
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import '@/presentation/assets/style/variable';
+
 .item-card-display {
-  transition: all 0.3s ease;
-  border: 1px solid rgb(0 0 0 / 10%);
+  @include card-hover;
+  border: $shadow-subtle;
   min-height: 350px;
   height: 100%;
-}
 
-.item-card-display:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgb(0 0 0 / 15%) !important;
+  &__person-info,
+  &__planet-info {
+    .info-section {
+      background-color: rgb(0 0 0 / 2%);
+      border-radius: $border-radius-md;
+      padding: $spacing-md;
+      margin-bottom: $spacing-md;
+      display: flex;
+      flex-direction: column;
+    }
+  }
 }
 
 .person-card {
-  border-left: 4px solid v-bind('THEME_COLORS.secondary');
+  border-left: 4px solid $secondary;
 }
 
 .planet-card {
-  border-left: 4px solid v-bind('THEME_COLORS.success');
+  border-left: 4px solid $success;
 }
 
-.info-section {
-  background-color: rgb(0 0 0 / 2%);
-  border-radius: 8px;
-  padding: 12px;
-  margin-bottom: 12px;
-  display: flex;
-  flex-direction: column;
+.section-title {
+  @extend .text-subtitle-1 !optional;
+  @extend .font-weight-bold !optional;
+  @extend .mb-2 !optional;
 }
 
-.v-list-item {
+.info-item {
+  @extend .px-0 !optional;
+  @extend .py-1 !optional;
   min-height: 32px;
+
+  .v-list-item-title {
+    font-size: $font-size-sm;
+    line-height: $line-height-normal;
+    white-space: normal;
+    word-wrap: break-word;
+  }
 }
 
-.v-list-item-title {
-  font-size: 0.875rem;
-  line-height: 1.4;
-  white-space: normal;
-  word-wrap: break-word;
+.info-row {
+  @include flex-center;
+  justify-content: flex-start;
+
+  .info-icon {
+    margin-right: $spacing-sm;
+  }
 }
 
 .star-wars-font {
-  font-family: 'Arial Black', Arial, sans-serif;
-  text-shadow: 2px 2px 4px rgb(0 0 0 / 30%);
-  letter-spacing: 1px;
+  @include star-wars-font;
 }
 
-@media (width >= 600px) and (width <= 1023px) {
+// Breakpoints usando las variables
+@include media-between($breakpoint-sm, $breakpoint-lg) {
   .item-card-display {
     min-height: 300px;
   }
 }
 
-@media (width >= 1024px) {
+@include media-up($breakpoint-lg) {
   .item-card-display {
     min-height: 350px;
   }

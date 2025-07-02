@@ -131,28 +131,37 @@ defineExpose({
 })
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import '@/presentation/assets/style/variable';
+
+.toast-wrapper {
+  display: flex;
+  align-items: center;
+
+  .toast-icon {
+    margin-right: 0.5rem;
+  }
+}
+
 .toast-content {
   flex: 1;
+
+  .toast-title {
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 2px;
+  }
+
+  .toast-message {
+    font-size: 0.875rem;
+    line-height: 1.3;
+  }
 }
 
-.toast-title {
-  font-weight: 600;
-  font-size: 0.9rem;
-  margin-bottom: 2px;
-}
-
-.toast-message {
-  font-size: 0.875rem;
-  line-height: 1.3;
-}
-
-/* stylelint-disable-next-line selector-class-pattern */
 :deep(.v-snackbar__content) {
   padding: 16px 24px;
 }
 
-/* stylelint-disable-next-line selector-class-pattern */
 :deep(.v-snackbar__actions) {
   padding: 8px 16px 16px;
 }
