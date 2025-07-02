@@ -17,20 +17,33 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Download node_modules
+      - name: Download node_modules tarball
         uses: actions/download-artifact@v4
         with:
           name: node-modules-${{ github.run_id }}
-          path: node_modules/
+          path: .
+
+      - name: Extract node_modules with permissions
+        run: tar -xzf node_modules.tar.gz
 
       - name: Build application
-        run: npx vite build
+        run: npm run build
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
           name: dist-${{ github.sha }}
           path: dist/
+          retention-days: 30
+
+      - name: Check build size
+        run: |
+          echo "## 📊 Build Size Report" >> $GITHUB_STEP_SUMMARY
+          echo "| File | Size |" >> $GITHUB_STEP_SUMMARY
+          echo "|------|------|" >> $GITHUB_STEP_SUMMARY
+          du -h dist/* | while read size file; do
+            echo "| $(basename $file) | $size |" >> $GITHUB_STEP_SUMMARY
+          done
 
       - name: Check if build passed
         run: echo "✅ Build completed successfully"

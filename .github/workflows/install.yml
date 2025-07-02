@@ -14,11 +14,11 @@ jobs:
   install:
     name: 📦 Install Dependencies
     runs-on: ubuntu-latest
-
+    
     outputs:
       cache-hit: ${{ steps.cache-deps.outputs.cache-hit }}
       node-version: ${{ steps.setup-node.outputs.node-version }}
-
+    
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -41,9 +41,15 @@ jobs:
         if: steps.cache-deps.outputs.cache-hit != 'true'
         run: npm ci
 
-      - name: Upload node_modules
+      - name: Ensure executable permissions
+        run: chmod +x node_modules/.bin/* || true
+
+      - name: Create tarball with permissions
+        run: tar -czf node_modules.tar.gz node_modules/
+
+      - name: Upload node_modules tarball
         uses: actions/upload-artifact@v4
         with:
           name: node-modules-${{ github.run_id }}
-          path: node_modules/
+          path: node_modules.tar.gz
           retention-days: 1
