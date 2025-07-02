@@ -82,30 +82,30 @@ const {
 } = useStoreManager();
 
 watch(currentPage, (value) => {
-  setCurrentPage(value)
+  setCurrentPage(value);
 });
 
 watch(totalPages, (value) => {
-  pagesNumber.value = value
+  pagesNumber.value = value;
 });
 
 const handleSortChange = (direction) => {
-  setSortDirection(direction)
+  setSortDirection(direction);
 }
 
 const handleSearch = (searchTerm) => {
-  setSearchTerm(searchTerm)
-  currentPage.value = 1
+  setSearchTerm(searchTerm);
+  currentPage.value = 1;
 }
 
 const handleTypeChange = (type) => {
-  setSelectedData(type)
-  currentPage.value = 1
+  setSelectedData(type);
+  currentPage.value = 1;
 }
 
 onMounted(async () => {
-  await fetchData()
-  pagesNumber.value = totalPages.value
+  await fetchData();
+  pagesNumber.value = totalPages.value;
 });
 </script>
 

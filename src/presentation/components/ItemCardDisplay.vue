@@ -294,20 +294,24 @@ const props = defineProps({
     type: String,
     default: DATA_TYPES.people
   }
-})
+});
 
 const isItemPerson = computed(() => {
-  return props.selectedType === DATA_TYPES.people || props.item.gender !== undefined
-})
+  return props.selectedType === DATA_TYPES.people || props.item.gender !== undefined;
+});
 
 const formatHeight = (height) => {
-  if (!height || height === 'unknown') return 'Unknown'
-  return `${height} cm`
+  if (!height || height === 'unknown') {
+    return 'Unknown';
+  }
+  return `${height} cm`;
 }
 
 const formatMass = (mass) => {
-  if (!mass || mass === 'unknown') return 'Unknown'
-  return `${mass} kg`
+  if (!mass || mass === 'unknown') {
+    return 'Unknown';
+  }
+  return `${mass} kg`;
 }
 
 const formatGender = (gender) => {
