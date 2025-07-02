@@ -1,0 +1,49 @@
+name: Install Dependencies
+
+on:
+  workflow_call:
+    outputs:
+      cache-hit:
+        description: "Whether the cache was hit"
+        value: ${{ jobs.install.outputs.cache-hit }}
+      node-version:
+        description: "Node.js version used"
+        value: ${{ jobs.install.outputs.node-version }}
+
+jobs:
+  install:
+    name: 📦 Install Dependencies
+    runs-on: ubuntu-latest
+
+    outputs:
+      cache-hit: ${{ steps.cache-deps.outputs.cache-hit }}
+      node-version: ${{ steps.setup-node.outputs.node-version }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        id: setup-node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Cache node modules
+        id: cache-deps
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Install dependencies
+        if: steps.cache-deps.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - name: Upload node_modules
+        uses: actions/upload-artifact@v4
+        with:
+          name: node-modules-${{ github.run_id }}
+          path: node_modules/
+          retention-days: 1
