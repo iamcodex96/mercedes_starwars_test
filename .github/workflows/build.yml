@@ -24,10 +24,13 @@ jobs:
           path: node_modules/
 
       - name: Build application
-        run: npm run build
+        run: npx vite build
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
           name: dist-${{ github.sha }}
           path: dist/
+
+      - name: Check if build passed
+        run: echo "✅ Build completed successfully"

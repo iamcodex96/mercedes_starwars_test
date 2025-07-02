@@ -24,10 +24,10 @@ jobs:
           path: node_modules/
 
       - name: Run ESLint
-        run: npm run lint:js
+        run: npx eslint .
 
       - name: Run Stylelint
-        run: npm run lint:style
+        run: npx stylelint "src/**/*.{vue,scss}"
 
       - name: Check if linting passed
         run: echo "✅ Linting completed successfully"

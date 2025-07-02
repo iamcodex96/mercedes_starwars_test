@@ -24,7 +24,10 @@ jobs:
           path: node_modules/
 
       - name: Run unit tests
-        run: npm run test
+        run: npx vitest run
 
       - name: Run e2e tests
-        run: npm run test:e2e
+        run: npx playwright test
+
+      - name: Check if tests passed
+        run: echo "✅ Tests completed successfully"
