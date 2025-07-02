@@ -27,13 +27,31 @@ jobs:
         run: tar -xzf node_modules.tar.gz
 
       - name: Install Playwright browsers
-        run: npx playwright install
+        run: npx playwright install --with-deps
 
       - name: Run unit tests
         run: npm run test:run
 
+      - name: Build application
+        run: npm run build
+
+      - name: Start preview server in background
+        run: |
+          npm run preview &
+          echo $! > server.pid
+          sleep 10
+          curl -f http://localhost:4173 || (echo "Server not ready" && exit 1)
+
       - name: Run e2e tests
-        run: npm run test:e2e
+        run: npm run test:e2e:dev
+
+      - name: Stop preview server
+        if: always()
+        run: |
+          if [ -f server.pid ]; then
+            kill $(cat server.pid) || true
+            rm server.pid
+          fi
 
       - name: Upload test results
         uses: actions/upload-artifact@v4
@@ -43,6 +61,7 @@ jobs:
           path: |
             test-results/
             playwright-report/
+            coverage/
           retention-days: 7
 
       - name: Check if tests passed
