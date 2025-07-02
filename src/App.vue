@@ -1,15 +1,16 @@
 <template>
   <v-app>
     <v-app-bar
-      color="black"
+      :color="THEME_COLORS.ink"
       density="comfortable"
       elevation="4"
     >
       <template #prepend>
-        <v-app-bar-title class="app-toolbar-title text-yellow-accent-4 star-wars-font px-6">
+        <v-app-bar-title class="app-toolbar-title star-wars-font px-6" :style="{ color: THEME_COLORS.primary }">
           <v-icon
             icon="mdi-star"
             class="mr-2"
+            :color="THEME_COLORS.primary"
           />
           STAR WARS
         </v-app-bar-title>
@@ -118,5 +119,4 @@ onMounted(async () => {
 .app-toolbar-title {
   font-size: 1.5rem !important;
 }
-
 </style>

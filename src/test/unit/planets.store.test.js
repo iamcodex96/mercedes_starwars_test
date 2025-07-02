@@ -3,14 +3,14 @@ import { setActivePinia, createPinia } from 'pinia'
 import { usePlanetsStore } from '@/application/stores/planets.store.js'
 import { mockPlanetsApiResponse } from '@/test/mocks/planetsData.mock.js'
 
-// Mock del apiClient
+// Mock of apiClient
 vi.mock('@/infrastructure/api/apiClient', () => ({
     default: {
         get: vi.fn()
     }
 }))
 
-// Mock de la constante
+// Mock of constant
 vi.mock('@/shared/constants/starwars.const', () => ({
     STAR_WARS_CONFIG: {
         ENDPOINTS: {
@@ -170,7 +170,7 @@ describe('Planets Store', () => {
             const store = usePlanetsStore();
             const manyPlanets = Array.from({ length: 15 }, (_, index) => ({
                 ...mockPlanetsApiResponse[0],
-                name: `Planet ${String(index + 1).padStart(2, '0')}`, // For consistent sorting
+                name: `Planet ${String(index + 1).padStart(2, '0')}`,
                 url: `https://swapi.dev/api/planets/${index + 1}/`
             }));
             apiClient.get.mockResolvedValue({ data: manyPlanets });

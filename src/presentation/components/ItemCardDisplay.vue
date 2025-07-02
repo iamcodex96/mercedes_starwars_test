@@ -1,34 +1,33 @@
 <template>
   <v-card
-    :class="[
+      :class="[
       'item-card-display my-3 mx-1 d-flex flex-column',
       isItemPerson ? 'person-card' : 'planet-card'
     ]"
-    :aria-label="item.name"
-    role="listitem"
-    tabindex="0"
-    elevation="3"
-    rounded="lg"
+      :aria-label="item.name"
+      role="listitem"
+      tabindex="0"
+      elevation="3"
+      rounded="lg"
   >
-    <!-- Header with icon and name -->
     <v-card-title class="d-flex align-center pa-4 flex-shrink-0">
-      <v-icon 
-        :icon="isItemPerson ? 'mdi-account-circle' : 'mdi-earth'" 
-        :color="isItemPerson ? 'blue' : 'green'"
-        size="large"
-        class="mr-3"
+      <v-icon
+          :icon="isItemPerson ? 'mdi-account-circle' : 'mdi-earth'"
+          :color="isItemPerson ? THEME_COLORS.secondary : THEME_COLORS.success"
+          size="large"
+          class="mr-3"
       />
       <div>
         <h3
-          class="text-h5 star-wars-font mb-1"
-          data-testid="item-name"
+            class="text-h5 star-wars-font mb-1"
+            data-testid="item-name"
         >
           {{ item.name }}
         </h3>
-        <v-chip 
-          :color="isItemPerson ? 'blue' : 'green'" 
-          size="small" 
-          variant="outlined"
+        <v-chip
+            :color="isItemPerson ? THEME_COLORS.info : THEME_COLORS.success"
+            size="small"
+            variant="outlined"
         >
           {{ isItemPerson ? 'Character' : 'Planet' }}
         </v-chip>
@@ -37,109 +36,114 @@
 
     <v-divider />
 
-    <!-- Content area that fills remaining space -->
     <v-card-text class="pa-4 flex-grow-1 d-flex flex-column">
-      <!-- Person Information -->
       <div
-        v-if="isItemPerson"
-        class="item-card-display__person-info flex-grow-1"
+          v-if="isItemPerson"
+          class="item-card-display__person-info flex-grow-1"
       >
         <v-row class="fill-height">
           <v-col
-            cols="12"
-            lg="6"
+              cols="12"
+              lg="6"
           >
             <div class="info-section h-100">
-              <h4 class="text-subtitle-1 font-weight-bold mb-2 text-blue">
+              <h4 class="text-subtitle-1 font-weight-bold mb-2" :style="{ color: THEME_COLORS.secondary }">
                 <v-icon
-                  icon="mdi-human"
-                  size="small"
-                  class="mr-1"
+                    icon="mdi-human"
+                    size="small"
+                    class="mr-1"
+                    :color="THEME_COLORS.secondary"
                 />
                 Physical Characteristics
               </h4>
               <v-list
-                dense
-                class="pa-0"
+                  dense
+                  class="pa-0"
               >
                 <v-list-item class="px-0 py-1">
-                  <template #prepend>
-                    <v-icon
-                      icon="mdi-ruler"
-                      size="small"
-                      color="grey"
-                    />
-                  </template>
                   <v-list-item-title>
-                    <strong>Height:</strong> {{ formatHeight(item.height) }}
+                    <div class="d-flex align-center">
+                      <v-icon
+                          icon="mdi-ruler"
+                          size="small"
+                          :color="THEME_COLORS.secondary"
+                          class="mr-2"
+                      />
+                      <strong>Height:</strong>&nbsp;{{ formatHeight(item.height) }}
+                    </div>
                   </v-list-item-title>
                 </v-list-item>
                 <v-list-item class="px-0 py-1">
-                  <template #prepend>
-                    <v-icon
-                      icon="mdi-weight"
-                      size="small"
-                      color="grey"
-                    />
-                  </template>
                   <v-list-item-title>
-                    <strong>Mass:</strong> {{ formatMass(item.mass) }}
+                    <div class="d-flex align-center">
+                      <v-icon
+                          icon="mdi-weight"
+                          size="small"
+                          :color="THEME_COLORS.secondary"
+                          class="mr-2"
+                      />
+                      <strong>Mass:</strong>&nbsp;{{ formatMass(item.mass) }}
+                    </div>
                   </v-list-item-title>
                 </v-list-item>
                 <v-list-item class="px-0 py-1">
-                  <template #prepend>
-                    <v-icon
-                      icon="mdi-palette"
-                      size="small"
-                      color="grey"
-                    />
-                  </template>
                   <v-list-item-title>
-                    <strong>Skin Color:</strong> {{ formatText(item.skinColor) }}
+                    <div class="d-flex align-center">
+                      <v-icon
+                          icon="mdi-palette"
+                          size="small"
+                          :color="THEME_COLORS.secondary"
+                          class="mr-2"
+                      />
+                      <strong>Skin Color:</strong>&nbsp;{{ formatText(item.skinColor) }}
+                    </div>
                   </v-list-item-title>
                 </v-list-item>
               </v-list>
             </div>
           </v-col>
           <v-col
-            cols="12"
-            lg="6"
+              cols="12"
+              lg="6"
           >
             <div class="info-section h-100">
-              <h4 class="text-subtitle-1 font-weight-bold mb-2 text-blue">
+              <h4 class="text-subtitle-1 font-weight-bold mb-2" :style="{ color: THEME_COLORS.secondary }">
                 <v-icon
-                  icon="mdi-information"
-                  size="small"
-                  class="mr-1"
+                    icon="mdi-information"
+                    size="small"
+                    class="mr-1"
+                    :color="THEME_COLORS.secondary"
                 />
                 Personal Information
               </h4>
               <v-list
-                dense
-                class="pa-0"
+                  dense
+                  class="pa-0"
               >
                 <v-list-item class="px-0 py-1">
-                  <template #prepend>
-                    <v-icon
-                      icon="mdi-gender-male-female"
-                      size="small"
-                      color="grey"
-                    />
-                  </template>
                   <v-list-item-title>
-                    <strong>Gender:</strong> {{ formatGender(item.gender) }}
+                    <div class="d-flex align-center">
+                      <v-icon
+                          icon="mdi-gender-male-female"
+                          size="small"
+                          :color="THEME_COLORS.secondary"
+                          class="mr-2"
+                      />
+                      <strong>Gender:</strong>&nbsp;{{ formatGender(item.gender) }}
+                    </div>
                   </v-list-item-title>
                 </v-list-item>
                 <v-list-item class="px-0 py-1">
-                  <template #prepend>
-                    <v-icon
-                      icon="mdi-calendar"
-                      size="small"
-                      color="grey"
-                    />
-                  </template>
                   <v-list-item-title>
-                    <strong>Birth Year:</strong> {{ formatBirthYear(item.birthYear) }}
+                    <div class="d-flex align-center">
+                      <v-icon
+                          icon="mdi-calendar"
+                          size="small"
+                          :color="THEME_COLORS.secondary"
+                          class="mr-2"
+                      />
+                      <strong>Birth Year:</strong>&nbsp;{{ formatBirthYear(item.birthYear) }}
+                    </div>
                   </v-list-item-title>
                 </v-list-item>
               </v-list>
@@ -148,119 +152,126 @@
         </v-row>
       </div>
 
-      <!-- Planet Information -->
       <div
-        v-else
-        class="item-card-display__planet-info flex-grow-1"
+          v-else
+          class="item-card-display__planet-info flex-grow-1"
       >
         <v-row class="fill-height">
           <v-col
-            cols="12"
-            lg="6"
+              cols="12"
+              lg="6"
           >
             <div class="info-section h-100">
-              <h4 class="text-subtitle-1 font-weight-bold mb-2 text-green">
+              <h4 class="text-subtitle-1 font-weight-bold mb-2" :style="{ color: THEME_COLORS.success }">
                 <v-icon
-                  icon="mdi-earth"
-                  size="small"
-                  class="mr-1"
+                    icon="mdi-earth"
+                    size="small"
+                    class="mr-1"
+                    :color="THEME_COLORS.success"
                 />
                 Physical Characteristics
               </h4>
               <v-list
-                dense
-                class="pa-0"
+                  dense
+                  class="pa-0"
               >
                 <v-list-item class="px-0 py-1">
-                  <template #prepend>
-                    <v-icon
-                      icon="mdi-diameter-outline"
-                      size="small"
-                      color="grey"
-                    />
-                  </template>
                   <v-list-item-title>
-                    <strong>Diameter:</strong> {{ formatDiameter(item.diameter) }}
+                    <div class="d-flex align-center">
+                      <v-icon
+                          icon="mdi-diameter-outline"
+                          size="small"
+                          :color="THEME_COLORS.success"
+                          class="mr-2"
+                      />
+                      <strong>Diameter:</strong>&nbsp;{{ formatDiameter(item.diameter) }}
+                    </div>
                   </v-list-item-title>
                 </v-list-item>
                 <v-list-item class="px-0 py-1">
-                  <template #prepend>
-                    <v-icon
-                      icon="mdi-weather-partly-cloudy"
-                      size="small"
-                      color="grey"
-                    />
-                  </template>
                   <v-list-item-title>
-                    <strong>Climate:</strong> {{ formatText(item.climate) }}
+                    <div class="d-flex align-center">
+                      <v-icon
+                          icon="mdi-weather-partly-cloudy"
+                          size="small"
+                          :color="THEME_COLORS.success"
+                          class="mr-2"
+                      />
+                      <strong>Climate:</strong>&nbsp;{{ formatText(item.climate) }}
+                    </div>
                   </v-list-item-title>
                 </v-list-item>
                 <v-list-item class="px-0 py-1">
-                  <template #prepend>
-                    <v-icon
-                      icon="mdi-gravity"
-                      size="small"
-                      color="grey"
-                    />
-                  </template>
                   <v-list-item-title>
-                    <strong>Gravity:</strong> {{ formatGravity(item.gravity) }}
+                    <div class="d-flex align-center">
+                      <v-icon
+                          icon="mdi-gravity"
+                          size="small"
+                          :color="THEME_COLORS.success"
+                          class="mr-2"
+                      />
+                      <strong>Gravity:</strong>&nbsp;{{ formatGravity(item.gravity) }}
+                    </div>
                   </v-list-item-title>
                 </v-list-item>
               </v-list>
             </div>
           </v-col>
           <v-col
-            cols="12"
-            lg="6"
+              cols="12"
+              lg="6"
           >
             <div class="info-section h-100">
-              <h4 class="text-subtitle-1 font-weight-bold mb-2 text-green">
+              <h4 class="text-subtitle-1 font-weight-bold mb-2" :style="{ color: THEME_COLORS.success }">
                 <v-icon
-                  icon="mdi-chart-line"
-                  size="small"
-                  class="mr-1"
+                    icon="mdi-chart-line"
+                    size="small"
+                    class="mr-1"
+                    :color="THEME_COLORS.success"
                 />
                 Population Data
               </h4>
               <v-list
-                dense
-                class="pa-0"
+                  dense
+                  class="pa-0"
               >
                 <v-list-item class="px-0 py-1">
-                  <template #prepend>
-                    <v-icon
-                      icon="mdi-water"
-                      size="small"
-                      color="grey"
-                    />
-                  </template>
                   <v-list-item-title>
-                    <strong>Surface Water:</strong> {{ formatWater(item.surfaceWater) }}
+                    <div class="d-flex align-center">
+                      <v-icon
+                          icon="mdi-water"
+                          size="small"
+                          :color="THEME_COLORS.success"
+                          class="mr-2"
+                      />
+                      <strong>Surface Water:</strong>&nbsp;{{ formatWater(item.surfaceWater) }}
+                    </div>
                   </v-list-item-title>
                 </v-list-item>
                 <v-list-item class="px-0 py-1">
-                  <template #prepend>
-                    <v-icon
-                      icon="mdi-orbit"
-                      size="small"
-                      color="grey"
-                    />
-                  </template>
                   <v-list-item-title>
-                    <strong>Orbital Period:</strong> {{ formatOrbitalPeriod(item.orbitalPeriod) }}
+                    <div class="d-flex align-center">
+                      <v-icon
+                          icon="mdi-orbit"
+                          size="small"
+                          :color="THEME_COLORS.success"
+                          class="mr-2"
+                      />
+                      <strong>Orbital Period:</strong>&nbsp;{{ formatOrbitalPeriod(item.orbitalPeriod) }}
+                    </div>
                   </v-list-item-title>
                 </v-list-item>
                 <v-list-item class="px-0 py-1">
-                  <template #prepend>
-                    <v-icon
-                      icon="mdi-account-group"
-                      size="small"
-                      color="grey"
-                    />
-                  </template>
                   <v-list-item-title>
-                    <strong>Population:</strong> {{ formatPopulation(item.population) }}
+                    <div class="d-flex align-center">
+                      <v-icon
+                          icon="mdi-account-group"
+                          size="small"
+                          :color="THEME_COLORS.success"
+                          class="mr-2"
+                      />
+                      <strong>Population:</strong>&nbsp;{{ formatPopulation(item.population) }}
+                    </div>
                   </v-list-item-title>
                 </v-list-item>
               </v-list>
@@ -275,6 +286,7 @@
 <script setup>
 import { computed } from 'vue'
 import { DATA_TYPES } from '@/shared/constants/store.const.js'
+import { THEME_COLORS } from '@/shared/constants/theme.const.js'
 
 const props = defineProps({
   item: Object,
@@ -377,11 +389,11 @@ const formatText = (text) => {
 }
 
 .person-card {
-  border-left: 4px solid #2196F3;
+  border-left: 4px solid v-bind('THEME_COLORS.secondary');
 }
 
 .planet-card {
-  border-left: 4px solid #4CAF50;
+  border-left: 4px solid v-bind('THEME_COLORS.success');
 }
 
 .info-section {

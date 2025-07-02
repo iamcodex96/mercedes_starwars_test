@@ -6,7 +6,6 @@ import { DATA_TYPES, STORE_MANAGER_CONFIG } from '@/shared/constants/store.const
 import { usePeopleStore } from '@/application/stores/people.store.js';
 import { usePlanetsStore } from '@/application/stores/planets.store.js';
 
-// Mock the stores
 vi.mock('@/application/stores/people.store.js');
 vi.mock('@/application/stores/planets.store.js');
 
